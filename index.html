@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script>
     <script src="orbits/orbits.js"></script>
     <script src="boids/boids.js"></script>
+    <script src="celestial_attraction/celestial_attraction.js"></script>
     <style>
         div {
             width: 400px;
@@ -19,6 +20,14 @@
             border-collapse: separate;
             border-spacing: 5em;
         }
+
+        #description {
+            max-width: 50%;
+        }
+
+        #sketch_name {
+
+        }
     </style>
 </head>
 <body>
@@ -27,10 +36,36 @@
         <td>
             <div id="orbits"></div>
         </td>
+        <td>
+            <h1 id="sketch_name">Orbits</h1>
+            <p id="description"> A set of scattered random points are each connected to another point at random. Each
+                point then moves
+                towards its target at a speed inversely proportional to
+                its distance to the target. The lines between each object and its target is traced frame by frame. </p>
+        </td>
     </tr>
     <tr>
         <td>
             <div id="boids"></div>
+        </td>
+        <td>
+            <h1 id="sketch_name">Boids</h1>
+            <p id="description">A set of boids are attracted to the center of mass of the other boids, while also trying
+                to keep a
+                certain
+                distance from the other boids. This creates a flocking effect.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="celestial_attraction"></div>
+        </td>
+        <td>
+            <h1 id="sketch_name">Celestial Attraction</h1>
+            <p id="description">A set of scattered points are each assigned a target, and a target radius. Each point then
+                attempts
+                to move into orbit around the assigned target maintaining this fixed radius. The paths are traced frame
+                by frame. About 50% of the time, all objects are assigned the same target.</p>
         </td>
     </tr>
 </table>
