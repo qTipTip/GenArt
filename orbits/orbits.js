@@ -29,6 +29,8 @@ const s = (orbits) => {
 
         orbits.resetButton = orbits.createButton('Reset');
         orbits.resetButton.mousePressed(orbits.buttonReset);
+        orbits.slider = orbits.createSlider(2, 100, 1);
+        orbits.slider.mousePressed(orbits.sliderUpdate);
     };
 
     orbits.draw = () => {
@@ -155,6 +157,10 @@ const s = (orbits) => {
         if (orbits.keyCode === 83) {
             saveCanvas(c, seed + "_orbits", "jpg");
         }
+    };
+    orbits.sliderUpdate = () => {
+        NUM_ENTITIES = orbits.int(orbits.slider.value());
+        orbits.buttonReset();
     }
 };
 
