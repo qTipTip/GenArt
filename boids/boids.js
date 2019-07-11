@@ -23,8 +23,11 @@ const b = (boids) => {
         c = boids.createCanvas(400, 400);
         boids.initialize_entites();
         boids.noLoop();
+
         boids.button = boids.createButton('Play');
         boids.button.mousePressed(boids.buttonPressed);
+        boids.resetButton = boids.createButton('Reset');
+        boids.resetButton.mousePressed(boids.buttonReset);
     };
 
     boids.update_position = function () {
@@ -75,7 +78,7 @@ const b = (boids) => {
         }
     };
     boids.draw = () => {
-        boids.background(255);
+        boids.background(255, 255, 255, 80);
         for (let i = 0; i < boid_container.length; i++) {
             boid_container[i].draw();
         }
@@ -131,14 +134,14 @@ const b = (boids) => {
         soft_bound_position() {
             let bounding_vector = boids.createVector(0, 0);
             if (this.p.x < 0) {
-                bounding_vector.x = 5;
+                bounding_vector.x = 0.5;
             } else if (this.p.x > boids.width) {
-                bounding_vector.x = -5;
+                bounding_vector.x = -0.5;
             }
             if (this.p.y < 0) {
-                bounding_vector.y = 5;
+                bounding_vector.y = 0.5;
             } else if (this.p.y > boids.height) {
-                bounding_vector.y = -5;
+                bounding_vector.y = -0.5;
             }
             this.v.add(bounding_vector);
         }
@@ -156,7 +159,6 @@ const b = (boids) => {
             let mass = boids.random(5, 20);
             boid_container.push(new Boid(position, mass));
         }
-        console.log(boid_container);
     };
 
 
@@ -170,13 +172,7 @@ const b = (boids) => {
     boids.mousePressed = () => {
         if (0 <= boids.mouseX && boids.mouseX <= boids.width) {
             if (0 <= boids.mouseY && boids.mouseY <= boids.height) {
-                if (running) {
-                    running = false;
-                    boids.noLoop();
-                } else {
-                    running = true;
-                    boids.loop();
-                }
+                boids.buttonReset();
             }
         }
     };
@@ -191,6 +187,15 @@ const b = (boids) => {
             boids.loop();
             boids.button.html('Pause');
         }
+    };
+    boids.buttonReset = () => {
+        boids.background(255);
+        boid_container = [];
+        boids.initialize_entites();
+        boids.draw();
+        running = true;
+        boids.loop();
+        boids.button.html('Pause');
     };
 };
 

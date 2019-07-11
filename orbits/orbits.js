@@ -26,6 +26,9 @@ const s = (orbits) => {
         orbits.noLoop();
         orbits.button = orbits.createButton('Play');
         orbits.button.mousePressed(orbits.buttonPressed);
+
+        orbits.resetButton = orbits.createButton('Reset');
+        orbits.resetButton.mousePressed(orbits.buttonReset);
     };
 
     orbits.draw = () => {
@@ -123,13 +126,7 @@ const s = (orbits) => {
     orbits.mousePressed = () => {
         if (0 <= orbits.mouseX && orbits.mouseX <= orbits.width) {
             if (0 <= orbits.mouseY && orbits.mouseY <= orbits.height) {
-                if (running) {
-                    running = false;
-                    orbits.noLoop();
-                } else {
-                    running = true;
-                    orbits.loop();
-                }
+                orbits.buttonReset();
             }
         }
     };
@@ -145,7 +142,14 @@ const s = (orbits) => {
             orbits.button.html('Pause');
         }
     };
-
+    orbits.buttonReset = () => {
+        orbits.background(255);
+        entities = [];
+        orbits.initialize_entites();
+        orbits.button.html('Pause');
+        orbits.loop();
+        running = true;
+    };
     orbits.keyPressed = () => {
 
         if (orbits.keyCode === 83) {
