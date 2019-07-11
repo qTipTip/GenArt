@@ -77,6 +77,13 @@ const c = (celestial_attraction) => {
         }
     }
 
+    celestial_attraction.mousePressed = () => {
+        if (0 <= celestial_attraction.mouseX && celestial_attraction.mouseX <= celestial_attraction.width) {
+            if (0 <= celestial_attraction.mouseY && celestial_attraction.mouseY <= celestial_attraction.height) {
+                celestial_attraction.buttonReset();
+            }
+        }
+    };
     celestial_attraction.buttonPressed = () => {
         if (running) {
             celestial_attraction.button.html('Pause');
@@ -94,6 +101,9 @@ const c = (celestial_attraction) => {
         celestial_attraction.background(60);
         celestial_attraction.initialize_bodies();
         celestial_attraction.initialize_target();
+        celestial_attraction.button.html('Pause');
+        celestial_attraction.loop();
+        running = true;
     };
 };
 
