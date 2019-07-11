@@ -28,8 +28,8 @@ const b = (boids) => {
         boids.button.mousePressed(boids.buttonPressed);
         boids.resetButton = boids.createButton('Reset');
         boids.resetButton.mousePressed(boids.buttonReset);
-        boids.slider = boids.createSlider(2, 500, 10);
-        boids.slider.mousePressed(boids.sliderUpdate);
+        boids.slider = boids.createSlider(2, 500, 100, 1);
+        boids.slider.changed(boids.sliderUpdate);
     };
 
     boids.update_position = function () {
@@ -42,7 +42,7 @@ const b = (boids) => {
                 if (i !== j) {
                     center_of_mass.add(boid_container[j].p);
                     center_of_velo.add(boid_container[j].v);
-                    if (p5.Vector.sub(boid_container[j].p, boid_container[i].p).mag() < 5) {
+                    if (p5.Vector.sub(boid_container[j].p, boid_container[i].p).mag() < 15) {
                         repelling.sub(p5.Vector.sub(boid_container[j].p, boid_container[i].p));
                     }
                 }
@@ -52,8 +52,8 @@ const b = (boids) => {
 
             let dir = p5.Vector.sub(center_of_mass, boid_container[i].p);
             let v1 = p5.Vector.mult(dir, 1 / 1000);
-            let v2 = repelling;
-            let v3 = p5.Vector.mult(p5.Vector.sub(center_of_velo, boid_container[i].v), 1 / 16);
+            let v2 = p5.Vector.mult(repelling, 1 / 50);
+            let v3 = p5.Vector.mult(p5.Vector.sub(center_of_velo, boid_container[i].v), 1 / 32);
 
             boid_container[i].v.add(v1);
             boid_container[i].v.add(v2);
