@@ -1,6 +1,6 @@
 const s = (orbits) => {
 
-    let NUM_ENTITIES = 20;
+    let NUM_ENTITIES = 30;
     let G = 20;
     let DT = 1;
     let entities = [];
