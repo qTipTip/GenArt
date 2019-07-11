@@ -29,7 +29,7 @@ const s = (orbits) => {
 
         orbits.resetButton = orbits.createButton('Reset');
         orbits.resetButton.mousePressed(orbits.buttonReset);
-        orbits.slider = orbits.createSlider(2, 100, 1);
+        orbits.slider = orbits.createSlider(2, 100, 20, 1);
         orbits.slider.mousePressed(orbits.sliderUpdate);
     };
 

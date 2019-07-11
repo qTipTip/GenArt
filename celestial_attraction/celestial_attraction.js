@@ -59,7 +59,7 @@ const c = (celestial_attraction) => {
         }
 
         draw() {
-            celestial_attraction.stroke(255, 255, 255, 10);
+            celestial_attraction.stroke(255, 255, 255, 5);
             celestial_attraction.line(this.p.x, this.p.y, this.pp.x, this.pp.y);
         }
 

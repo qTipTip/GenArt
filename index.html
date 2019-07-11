@@ -8,6 +8,7 @@
     <script src="orbits/orbits.js"></script>
     <script src="boids/boids.js"></script>
     <script src="celestial_attraction/celestial_attraction.js"></script>
+    <script src="splitter/splitter.js"></script>
     <style>
         div {
             width: 400px;
@@ -42,7 +43,8 @@
             <p id="description"> A set of scattered random points are each connected to another point at random. Each
                 point then moves
                 towards its target at a speed inversely proportional to
-                its distance to the target. The lines between each object and its target is traced frame by frame, creating the mesh
+                its distance to the target. The lines between each object and its target is traced frame by frame,
+                creating the mesh
                 like structure. </p>
         </td>
     </tr>
@@ -55,7 +57,8 @@
             <p id="description">A set of boids are attracted to the center of mass of the other boids, while also trying
                 to keep a
                 certain
-                distance from the other boids. This creates a flocking effect as seen in schools of fish and flocks of birds.</p>
+                distance from the other boids. This creates a flocking effect as seen in schools of fish and flocks of
+                birds.</p>
         </td>
     </tr>
     <tr>
@@ -69,6 +72,20 @@
                 attempts
                 to move into orbit around the assigned target maintaining this fixed radius. The paths are traced frame
                 by frame. About 50% of the time, all objects are assigned the same target.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="splitter"></div>
+        </td>
+        <td>
+            <h1 id="sketch_name">Splitter</h1>
+            <p id="description">
+                A circle is split, yielding a random number of new circles in uniformly distributed angles from the
+                center of the original
+                circle. This process
+                is then recursively applied.
+            </p>
         </td>
     </tr>
 </table>
