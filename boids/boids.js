@@ -28,6 +28,8 @@ const b = (boids) => {
         boids.button.mousePressed(boids.buttonPressed);
         boids.resetButton = boids.createButton('Reset');
         boids.resetButton.mousePressed(boids.buttonReset);
+        boids.slider = boids.createSlider(2, 500, 10);
+        boids.slider.mousePressed(boids.sliderUpdate);
     };
 
     boids.update_position = function () {
@@ -197,6 +199,11 @@ const b = (boids) => {
         boids.loop();
         boids.button.html('Pause');
     };
+
+    boids.sliderUpdate = () => {
+        NUM_ENTITIES = boids.int(boids.slider.value());
+        boids.buttonReset();
+    }
 };
 
 let myBoids = new p5(b, "boids");
