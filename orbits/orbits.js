@@ -8,6 +8,7 @@ const s = (orbits) => {
     let bg;
     let fg;
     let c;
+    let running = false;
 
     orbits.setup = () => {
         seed = orbits.random(0, 99999);
@@ -22,6 +23,9 @@ const s = (orbits) => {
         orbits.background(0);
         c = orbits.createCanvas(400, 400);
         orbits.initialize_entites();
+        orbits.noLoop();
+        orbits.button = orbits.createButton('Play');
+        orbits.button.mousePressed(orbits.buttonPressed);
     };
 
     orbits.draw = () => {
@@ -98,7 +102,7 @@ const s = (orbits) => {
     };
 
     orbits.merge_entities_too_close = () => {
-        entities_to_remove = []
+        entities_to_remove = [];
         for (let i = 0; i < entities.length; i++) {
             let r = orbits.abs(p5.Vector.sub(entities[i].p, entities[i].t.p).mag());
             if (r < (entities[i].s + entities[i].t.s) / 2) {
@@ -116,10 +120,35 @@ const s = (orbits) => {
         }
     };
 
+    orbits.mousePressed = () => {
+        if (0 <= orbits.mouseX && orbits.mouseX <= orbits.width) {
+            if (0 <= orbits.mouseY && orbits.mouseY <= orbits.height) {
+                if (running) {
+                    running = false;
+                    orbits.noLoop();
+                } else {
+                    running = true;
+                    orbits.loop();
+                }
+            }
+        }
+    };
+
+    orbits.buttonPressed = () => {
+        if (running) {
+            running = false;
+            orbits.noLoop();
+            orbits.button.html('Play');
+        } else {
+            running = true;
+            orbits.loop();
+            orbits.button.html('Pause');
+        }
+    };
 
     orbits.keyPressed = () => {
 
-        if (orbits.keyCode == 83) {
+        if (orbits.keyCode === 83) {
             saveCanvas(c, seed + "_orbits", "jpg");
         }
     }

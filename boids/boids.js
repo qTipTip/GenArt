@@ -9,6 +9,7 @@ const b = (boids) => {
     let fg;
     let c;
     let vlim = 5;
+    let running = false;
 
     boids.setup = () => {
         seed = boids.random(0, 99999);
@@ -21,6 +22,9 @@ const b = (boids) => {
         boids.background(255);
         c = boids.createCanvas(400, 400);
         boids.initialize_entites();
+        boids.noLoop();
+        boids.button = boids.createButton('Play');
+        boids.button.mousePressed(boids.buttonPressed);
     };
 
     boids.update_position = function () {
@@ -158,10 +162,36 @@ const b = (boids) => {
 
     boids.keyPressed = () => {
 
-        if (boids.keyCode == 83) {
+        if (boids.keyCode === 83) {
             boids.saveCanvas(c, seed + "_boids", "jpg");
         }
-    }
+    };
+
+    boids.mousePressed = () => {
+        if (0 <= boids.mouseX && boids.mouseX <= boids.width) {
+            if (0 <= boids.mouseY && boids.mouseY <= boids.height) {
+                if (running) {
+                    running = false;
+                    boids.noLoop();
+                } else {
+                    running = true;
+                    boids.loop();
+                }
+            }
+        }
+    };
+
+    boids.buttonPressed = () => {
+        if (running) {
+            running = false;
+            boids.noLoop();
+            boids.button.html('Play');
+        } else {
+            running = true;
+            boids.loop();
+            boids.button.html('Pause');
+        }
+    };
 };
 
 let myBoids = new p5(b, "boids");
