@@ -19,12 +19,12 @@ const attractor = (dejong_attractor) => {
     function initialize_system(a, b, c, d) {
 
         system = new DeJong(a, b, c, d);
-        points = system.compute(20000);
+        points = system.compute(10000);
         x = points[0];
         y = points[1];
 
 
-        dejong_attractor.stroke(155, 30, 224, 20);
+        dejong_attractor.stroke(0, 0, 0, 100);
 
         for (let i = 0; i < x.length; i++) {
             dejong_attractor.ellipse(x[i], y[i], 1, 1);
@@ -33,7 +33,7 @@ const attractor = (dejong_attractor) => {
 
     dejong_attractor.setup = () => {
         canvas = dejong_attractor.createCanvas(400, 400);
-        dejong_attractor.background(60);
+        dejong_attractor.background(255);
         reset_button = dejong_attractor.createButton('Random');
         reset_button.mousePressed(dejong_attractor.resetButton);
         preset_button = dejong_attractor.createButton('Preset');
@@ -42,12 +42,12 @@ const attractor = (dejong_attractor) => {
     };
 
     dejong_attractor.presetButton = () => {
-        dejong_attractor.background(60);
+        dejong_attractor.background(255);
         initialize_system(presets[counter][0], presets[counter][1], presets[counter][2], presets[counter][3]);
         counter = (counter + 1) % presets.length;
     }
     dejong_attractor.resetButton = () => {
-        dejong_attractor.background(60);
+        dejong_attractor.background(255);
         initialize_system(dejong_attractor.random(-3, 3), dejong_attractor.random(-3, 3), dejong_attractor.random(-3, 3), dejong_attractor.random(-3, 3));
     };
 
