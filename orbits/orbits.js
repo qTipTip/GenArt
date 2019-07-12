@@ -16,7 +16,6 @@ const s = (orbits) => {
 
         orbits.randomSeed(seed);
 
-        // bg = random(0, 255);
         bg = 255;
         fg = 0;
 

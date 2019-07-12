@@ -5,10 +5,12 @@
     <title>Generative Art</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
     <script src="orbits/orbits.js"></script>
     <script src="boids/boids.js"></script>
     <script src="celestial_attraction/celestial_attraction.js"></script>
     <script src="splitter/splitter.js"></script>
+    <script src="deJong/dejong.js"></script>
     <style>
         div {
             width: 400px;
@@ -46,6 +48,23 @@
                 its distance to the target. The lines between each object and its target is traced frame by frame,
                 creating the mesh
                 like structure. </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="dejong"></div>
+        </td>
+        <td>
+            <h1 id="sketch_name"> Strange Attractors</h1>
+            <p id="description">
+                The deJong attractor is a mathematical system that evolves in time, parameterized by
+                four parameters \( a, b, c \) and \( d \). The system is determined by the following equations:
+                $$
+                x_{t+1} = \sin(a y_t) - \cos(b x_t), \\
+                y_{t+1} = \sin(c x_t) - \cos(d y_t).
+                $$
+                The parameters are selected randomly in the interval \( [-3, 3] \).
+            </p>
         </td>
     </tr>
     <tr>
